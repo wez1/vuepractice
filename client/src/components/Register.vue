@@ -1,19 +1,8 @@
 <template>
   <div>
-    <h1>Register</h1>
-    <input
-      type="email"
-      name="email"
-      v-model="email"
-      placeholder="email" />
+    <h1>Request Data Page</h1>
       <br>
-    <input
-      type="password"
-      name="password"
-      v-model="password"
-      placeholder="password" />
-      <br>
-      <button @click="register">Register</button>
+      <button @click="request">Request Data</button>
   </div>
 </template>
 
@@ -26,11 +15,9 @@ export default {
     }
   },
   methods: {
-    async register () {
-      const response = await AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      })
+    async request () {
+      const response = await AuthenticationService.request()
+      console.log(response)
     }
   }
 }
