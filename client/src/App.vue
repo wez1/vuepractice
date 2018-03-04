@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <div id="navbar">
-    <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
+    <div>
+    <b-navbar id="navbar" toggleable="md" type="dark" variant="dark" fixed="top">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand @click="navToMap" href="#">JobSearch Vantaa</b-navbar-brand>
-      <b-collapse is-nav id="nav_collapse">
-
+    <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
       <b-nav-item @click="navToMap" href="#">Kartta</b-nav-item>
       <b-nav-item @click="navToChart" href="#">Statistiikka</b-nav-item>
@@ -50,8 +49,9 @@ export default {
     JobTable
   },
   /* eslint-disable */
+  //because of jquery navscrolls :)
   methods: {
-    navToMap () {
+    navToMap () { 
       $('html, body').animate({
         scrollTop: $('#mapcontainer').offset().top - 140
       }, 500)
@@ -68,6 +68,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>

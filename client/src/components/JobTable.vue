@@ -48,12 +48,10 @@
              :sort-by.sync="sortBy"
              :sort-desc.sync="sortDesc"
              @filtered="onFiltered">
-      <template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>
-      <template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>
       <template slot="actions" slot-scope="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-          Info modal
+          Lisätietoa
         </b-button>
       </template>
     </b-table>
@@ -78,10 +76,10 @@ export default {
         { key: 'haku_paattyy_pvm', label: 'Haku päättyy', sortable: true },
         { key: 'ammattiala', label: 'Ammattiala', sortable: true },
         { key: 'tyotehtava', label: 'Työtehtävä', sortable: true },
-        { key: 'actions', label: 'Actions' }
+        { key: 'actions', label: 'Lisätietoa' }
       ],
       currentPage: 1,
-      perPage: 5,
+      perPage: 10,
       totalRows: items.length,
       pageOptions: [ 5, 10, 15, 25 ],
       sortBy: null,
