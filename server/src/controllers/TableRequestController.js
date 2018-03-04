@@ -10,7 +10,11 @@ module.exports = {
         for (let i = 0; i < response.data.length; i++) {
           items.push(
             {
-              haku_paattyy_pvm: response.data[ i ].haku_paattyy_pvm, ammattiala: response.data[ i ].ammattiala, tyotehtava: response.data[ i ].tyotehtava
+              haku_paattyy_pvm: response.data[ i ].haku_paattyy_pvm,
+              ammattiala: response.data[ i ].ammattiala,
+              tyotehtava: response.data[ i ].tyotehtava,
+              linkki: response.data[ i ].linkki,
+              organisaatio: response.data[ i ].organisaatio
             }
           )
         }

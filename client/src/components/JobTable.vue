@@ -3,27 +3,27 @@
     <!-- User Interface controls -->
     <b-row>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Filter" class="mb-0">
+        <b-form-group horizontal label="Suodata" class="mb-0">
           <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
-            <b-input-group-button>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
-            </b-input-group-button>
+            <b-form-input v-model="filter" placeholder="Kirjoita hakusana" />
+            <b-input-group-append>
+              <b-btn :disabled="!filter" @click="filter = ''">Tyhjennä</b-btn>
+            </b-input-group-append>
           </b-input-group>
         </b-form-group>
       </b-col>
       <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Sort" class="mb-0">
+        <b-form-group horizontal label="Järjestä" class="mb-0">
           <b-input-group>
             <b-form-select v-model="sortBy" :options="sortOptions">
               <option slot="first" :value="null">-- none --</option>
             </b-form-select>
-            <b-input-group-button>
+            <b-input-group-append>
               <b-form-select :disabled="!sortBy" v-model="sortDesc">
-                <option :value="false">Asc</option>
-                <option :value="true">Desc</option>
+                <option :value="false">Nous.</option>
+                <option :value="true">Lask.</option>
               </b-form-select>
-            </b-input-group-button>
+            </b-input-group-append>
           </b-input-group>
         </b-form-group>
       </b-col>
@@ -47,8 +47,7 @@
              :filter="filter"
              :sort-by.sync="sortBy"
              :sort-desc.sync="sortDesc"
-             @filtered="onFiltered"
-    >
+             @filtered="onFiltered">
       <template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>
       <template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>
       <template slot="actions" slot-scope="row">
@@ -56,22 +55,12 @@
         <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
           Info modal
         </b-button>
-        <b-button size="sm" @click.stop="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
-      </template>
-      <template slot="row-details" slot-scope="row">
-        <b-card>
-          <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
-          </ul>
-        </b-card>
       </template>
     </b-table>
 
     <!-- Info modal -->
     <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" ok-only>
-      <pre>{{ modalInfo.content }}</pre>
+      <pre>{{ modalInfo.content }}<br><a :href="modalInfo.linkki">Linkki hakuun</a></pre>
     </b-modal>
 
   </b-container>
@@ -79,30 +68,7 @@
 
 <script>
 import DataRequestService from '@/services/DataRequestService'
-const items = [
-  { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
-  { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
-  {
-    isActive: false,
-    age: 9,
-    name: { first: 'Mini', last: 'Navarro' },
-    _rowVariant: 'success'
-  },
-  { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
-  { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
-  { isActive: false, age: 27, name: { first: 'Essie', last: 'Dunlap' } },
-  { isActive: true, age: 40, name: { first: 'Thor', last: 'Macdonald' } },
-  {
-    isActive: true,
-    age: 87,
-    name: { first: 'Larsen', last: 'Shaw' },
-    _cellVariants: { age: 'danger', isActive: 'warning' }
-  },
-  { isActive: false, age: 26, name: { first: 'Mitzi', last: 'Navarro' } },
-  { isActive: false, age: 22, name: { first: 'Genevieve', last: 'Wilson' } },
-  { isActive: true, age: 38, name: { first: 'John', last: 'Carney' } },
-  { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }
-]
+const items = []
 
 export default {
   data () {
@@ -142,8 +108,15 @@ export default {
   },
   methods: {
     info (item, index, button) {
-      this.modalInfo.title = `Row index: ${index}`
-      this.modalInfo.content = JSON.stringify(item, null, 2)
+      this.modalInfo.title = `Ala: ${item.ammattiala}`
+      this.modalInfo.content =
+`Organisaatio:
+  ${item.organisaatio}
+Työtehtävä:
+  ${item.tyotehtava}
+Työnhaku päättyy:
+  ${item.haku_paattyy_pvm}`
+      this.modalInfo.linkki = item.linkki
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
     resetModal () {
