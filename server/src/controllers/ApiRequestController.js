@@ -9,10 +9,12 @@ module.exports = {
         const marks = []
         response.data.forEach(item => {
           marks.push({
-            position: {lat: item.y, lng: item.x}
+            position: {lat: item.y, lng: item.x},
+            infoText: item.tyotehtava,
+            linkki: item.linkki
           })
         })
-        res.send(marks) // <= send data to the client
+        res.send({data: response.data, marks: marks}) // <= send data to the client
         return response.data
       })
       .catch(err => {

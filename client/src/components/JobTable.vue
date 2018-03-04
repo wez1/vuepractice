@@ -83,7 +83,7 @@ export default {
       currentPage: 1,
       perPage: 5,
       totalRows: items.length,
-      pageOptions: [ 5, 10, 15 ],
+      pageOptions: [ 5, 10, 15, 25 ],
       sortBy: null,
       sortDesc: false,
       filter: null,

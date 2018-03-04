@@ -18,7 +18,7 @@
     <b-container style="background-color:#fff; padding-bottom:90px; padding-top:90px;">
       <b-row>
         <b-col lg="12" id="toppage">
-          <h1>Vantaan Avoimet Työpaikat</h1>
+          <h1 style="text-align: center">Vantaan Avoimet Työpaikat</h1>
         </b-col>
       </b-row>
       <b-row>
@@ -49,8 +49,7 @@ export default {
     ChartPage,
     JobTable
   },
-  // eslint will not like jquery but we have it and it works
-  // animated navs are so much easier in jquery so lets do it this way
+  /* eslint-disable */
   methods: {
     navToMap () {
       $('html, body').animate({
