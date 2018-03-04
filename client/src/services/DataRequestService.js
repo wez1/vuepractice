@@ -1,7 +1,13 @@
 import Api from '@/services/Api'
 
 export default {
-  request () {
-    return Api().get('request')
+  requestMapData () {
+    return Api().get('reqmap')
+  },
+  requestChartData () {
+    return Api().get('reqchart')
+  },
+  requestTableData () {
+    return Api().get('reqtable')
   }
 }

@@ -13,25 +13,7 @@
 </template>
 
 <script>
-import DataRequestService from '@/services/DataRequestService'
 export default {
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  methods: {
-    async request () {
-      const response = await DataRequestService.request()
-      console.log(response.data)
-      document.getElementById('joujou').innerHTML = ''
-      response.data.forEach(job => {
-        document.getElementById('joujou').innerHTML +=
-        '<li>' + job.tyotehtava + '</li>'
-      })
-      return response.data
-    }
-  }
 }
 </script>
 

@@ -4,17 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
-import * as VueGoogleMaps from 'vue2-google-maps'
+import lodash from 'lodash'
+import VueLodash from 'vue-lodash'
+
+Vue.use(VueLodash, lodash)
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyCWrq2H9IAid7BS3J_v1257APMJITYmj7I',
-    libraries: 'places'
-  }
-})
 
 /* eslint-disable no-new */
 new Vue({
